@@ -204,62 +204,56 @@
             for($m=0;$m<count($aux);$m++){
                 array_unshift($matriz[$m],$aux[$m]);
             }
+            $ruta=rutas($matriz);
             echo "Distancia mínima a recorrer: ";
-            echo rutas($matriz)[1];
+            echo $ruta[1];
 
             echo " [Km]. </br>";
           
   
             function rutas($matriz)
             {
-                $dm=99999;
-                for($m=1;$m<count($matriz[0]);$m++){
-                    if($dm>$matriz[0][$m] && $matriz[0][$m]!=0 && $m!=2){
-                        $dm=$matriz[0][$m];
-                        $pa=$m;
-                    }
-                }
-                $i=array($matriz[0][0],$matriz[$pa-1][0],$matriz[1][0]);
-                $k=$dm+$matriz[1][$pa];
-                while(compruebas($matriz,$i)){
-                    $dm=99999;
-                    for($m=1;$m<count($matriz[$pa-1]);$m++){
-                        if($dm>$matriz[$pa-1][$m] && $matriz[$pa-1][$m]!=0 && !in_array($matriz[$m-1][0],$i)){
-                            $dm=$matriz[$pa-1][$m];
-                            $pa1=$m;
-                        }
-                    }
-                    $pa=$pa1;
-                    $coef=9999;
-                    for($c=0;$c<count($i);$c++){
-                        $coefa=$matriz[buscapos($i[$c],$matriz)][$pa]+
-                                $matriz[buscapos($i[$c+1],$matriz)][$pa]-
-                                $matriz[buscapos($i[$c],$matriz)][buscapos($i[$c+1],$matriz)+1];
-                        if($coef>$coefa){
-                            $coef=$coefa;
-                            $pos=$c+1;
-                        }
-                        if($c+2==count($i)){
-                            break;
-                        }
-                    }
-                    $k+=$coef;
-                    $aux=0;
-                    $iaux=array();
-                    for($w=0;$w<=count($i);$w++){
-                        if($pos==$w){
-                            array_push($iaux,$matriz[$pa-1][0]);
-                        }
-                        else{
-                            array_push($iaux,$i[$aux]);
-                            $aux++;
-                        }
-                    }
-                    $i=$iaux;
-                }
-                array_unshift($i,$i[count($i)-1]);
-                $k=$k+$matriz[0][2];
-                return $algo=array($i,$k);
+              $pa=1;
+              $i=array($matriz[0][0],$matriz[1][0]);
+              $k=2*($matriz[0][2]);
+              while(compruebas($matriz,$i)){
+                  $dm=99999;
+                  for($m=3;$m<count($matriz[$pa-1]);$m++){
+                      if($dm>$matriz[$pa-1][$m] && $matriz[$pa-1][$m]!=0 && !in_array($matriz[$m-1][0],$i)){
+                          $dm=$matriz[$pa-1][$m];
+                          $pa1=$m;
+                      }
+                  }
+                  $pa=$pa1;
+                  $coef=9999;
+                  for($c=0;$c<count($i);$c++){
+                      $coefa=$matriz[buscapos($i[$c],$matriz)][$pa]+
+                              $matriz[buscapos($i[$c+1],$matriz)][$pa]-
+                              $matriz[buscapos($i[$c],$matriz)][buscapos($i[$c+1],$matriz)+1];
+                      if($coef>$coefa){
+                          $coef=$coefa;
+                          $pos=$c+1;
+                      }
+                      if($c+2==count($i)){
+                          break;
+                      }
+                  }
+                  $k+=$coef;
+                  $aux=0;
+                  $iaux=array();
+                  for($w=0;$w<=count($i);$w++){
+                      if($pos==$w){
+                          array_push($iaux,$matriz[$pa-1][0]);
+                      }
+                      else{
+                          array_push($iaux,$i[$aux]);
+                          $aux++;
+                      }
+                  }
+                  $i=$iaux;
+              }
+              array_unshift($i,$i[count($i)-1]);
+              return $algo=array($i,$k);
             }
 
             function compruebas($matriz,$i){
@@ -309,7 +303,7 @@
                     <tbody>
                     <tr> 
                         <td><center>P</center></td>
-                        <td><center><?php echo rutas($matriz)[0][$cont]?></center></td>
+                        <td><center><?php echo $ruta[0][$cont]?></center></td>
                         <td><center>Se dejan <?php echo $mostrar2['Cant_prod']?> productos.</center></td>
                         
               
