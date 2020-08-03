@@ -10,7 +10,7 @@
     
   <!--Navvar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
-        <a class="navbar-brand"  href="/TrabInteg"><img src="https://static-s.aa-cdn.net/img/gp/20600011146013/Ht1Wa_JFJI9zJtrQTmB9pe3sPFnKJz8tHKF_GXSo4KBoTsHrD_eKDwqlkvaQqSS85mw=s300?v=1" width="70" height="65"> Trabajo Integral GLF</a>
+        <a class="navbar-brand"  href="/TrabInteg"><img src="https://static-s.aa-cdn.net/img/gp/20600011146013/Ht1Wa_JFJI9zJtrQTmB9pe3sPFnKJz8tHKF_GXSo4KBoTsHrD_eKDwqlkvaQqSS85mw=s300?v=1" width="70" alt="logo utem" height="65"> Trabajo Integral GLF</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -28,7 +28,7 @@
           </ul>
         </div>
       </nav>
-      <center><div class="card card-body contenedor" style='width:500px; height:500px'>
+     <div class="card card-body contenedor" style='width:500px; height:500px'>
         <?php
           $conexion = mysqli_connect('localhost', 'root', '','trabajointegralglf');
           $C=$_POST['centro_dib'];
@@ -38,11 +38,10 @@
           $arrayY=array();
         ?>
 
-        <h2 class="display-4">Ruta más eficiente del camión N°<?php echo $C ?></h2>
+        <h2 class="display-4">Ruta más eficiente del camión N°<?php echo $C ?></h2><hr>
         <?php
 
-        
-          //echo "CENTRO DE DISTRIBUCION DEL CAMION: ".$C."<br>";
+       
 
             $sql3= "SELECT X from datoslocales WHERE NumeroIdentificador=$C ";
             $sql4= "SELECT Y from datoslocales WHERE NumeroIdentificador=$C ";
@@ -54,7 +53,7 @@
             {
                 if($mostrar2=mysqli_fetch_array($result2C))
                 {
-                    //echo "coordenadas de ".$C.": ".$mostrar['X'].",".$mostrar2['Y'];
+                   
 
                     array_push($arrayX,$mostrar['X']);
                     array_push($arrayY,$mostrar2['Y']);
@@ -76,12 +75,7 @@
 
 
             $cant_PV=count($puntosventas) + 2;
-            /*echo "cantidad de puntos de venta: ".$cant_PV."<br>";
-            
-          
-            echo "<br>";
-            echo "EMPRESA: D <br>";
-            echo "PUNTOS DE VENTAS: <br>";*/
+           
             for($a=0;$a<count($puntosventas);$a++)
             {   
                 $num=$puntosventas[$a];
@@ -97,7 +91,7 @@
                 {
                     if($mostrar4=mysqli_fetch_array($Yp))
                     {
-                        //echo "coordenadas de ".$num.": ".$mostrar3['X'].",".$mostrar4['Y'];
+                       
                         array_push($arrayX,$mostrar3['X']);
                         array_push($arrayY,$mostrar4['Y']);
                     }
@@ -106,23 +100,9 @@
                 
             }
 
-            /*echo "<br>";
-            echo "Coordenadas X: ";
-            for($a=0;$a<count($arrayX);$a++)
-            {
-                echo $arrayX[$a]." ";
-            }
-
-            echo "<br>";
-            echo "Coordenadas Y: ";
-
-            for($a=0;$a<count($arrayY);$a++)
-            {
-                echo $arrayY[$a]." ";
-                
-            }
+           
             
-            echo "<br>";*/
+          
            
           
             for($a=0;$a<$cant_PV;$a++)
@@ -135,9 +115,7 @@
                     }
                     else
                     {
-                        //array= [C,D,2,3,8,10]
-                        //arrayX=[X1,X2,X3,X4,X5,X6]
-                        //arrayY=[Y1,Y2,Y3,Y4,Y5,Y6]
+                        
 
                         $var= distancia($arrayX[$a],$arrayY[$a],$arrayX[$b],$arrayY[$b]);
                         $matriz[$a][$b]=$var;
@@ -149,19 +127,7 @@
               
             }
 
-          
-
-
-            //MOSTRAR WEAS
-            /*for($a=0;$a<$cant_PV;$a++)
-            {
-                for($b=0;$b<$cant_PV;$b++)
-                {
-                    echo $matriz[$a][$b].' ';
-                }
-                echo"<br>";
-            }*/
-            
+        
             
             $aux=array ();
             array_push($aux,$C);
@@ -188,24 +154,13 @@
             }
 
             
-            /*Matriz definida de esta forma tomando en cuenta LA fila A como la empresa ,
-            B como el centro de distribucion y los demas como puntos de venta.
-            la funcion devuelve la ruta mas corta y la distancia total recorrida.
-              ["A","B","C","D","E"]
-              [0,2,1,10,25]
-              [2,0,18,5,5]
-              [1,18,0,20,2]
-              [10,5,20,0,8]
-              [25,5,2,8,0]*/
-
             
-             //$matriz2=array("CentroDistribucion","Empresa","PV1","PV2","PV3");
 
             for($m=0;$m<count($aux);$m++){
                 array_unshift($matriz[$m],$aux[$m]);
             }
             $ruta=rutas($matriz);
-            echo "Distancia mínima a recorrer: ";
+            echo "      Distancia mínima a recorrer: ";
             echo $ruta[1];
 
             echo " [Km]. </br>";
@@ -273,24 +228,24 @@
             }
         ?> 
         
-        <br><table>
+        <br><table> <caption>  </caption>
           <thead>
             <tr>
-              <td class="text-center pl-2 pr-3">Tipo Local</td>
-              <td class="text-center pl-2 pr-3">Número Identificador</td>
-              <td class="text-center pl-2 pr-3"><center>Acción</center></td>
+              <th id="tipo" class="text-center pl-2 pr-3">Tipo Local</th>
+              <th id="Identificador" class="text-center pl-2 pr-3">Número Identificador</th>
+              <th id="Accion" class="text-center pl-2 pr-3">Acción</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td><center>D</center></td>
-              <td><center>0</center></td>
-              <td><center>No olvide llevar los productos</center></td>
+              <td>D</td>
+              <td>0</td>
+              <td>No olvide llevar los productos</td>
             </tr>
             <tr>
-              <td><center>C</center></td>
-              <td><center><?php echo $C?></center></td>
-              <td><center>Se carga con x=<?php echo $_POST['cant_prod']?> productos.</center></td>
+              <td>C</td>
+              <td><?php echo $C?></td>
+              <td>Se carga con x=<?php echo $_POST['cant_prod']?> productos.</td>
             </tr>
             <?php
             $sql2 ="SELECT * from PuntosVentas$C ";
@@ -302,9 +257,9 @@
                     </thead>
                     <tbody>
                     <tr> 
-                        <td><center>P</center></td>
-                        <td><center><?php echo $ruta[0][$cont]?></center></td>
-                        <td><center>Se dejan <?php echo $mostrar2['Cant_prod']?> productos.</center></td>
+                        <td>P</td>
+                        <td><?php echo $ruta[0][$cont]?></td>
+                        <td>Se dejan <?php echo $mostrar2['Cant_prod']?> productos.</td>
                         
               
                     </tr>
@@ -313,14 +268,14 @@
                     }
               ?>  
               <tr>
-                <td><center>D</center></td>
-                <td><center>0</center></td>
-                <td><center>Se estaciona el camión.</center></td>
+                <td>D</td>
+                <td>0</td>
+                <td>Se estaciona el camión.</td>
               </tr>
         
           </tbody>
         </table>
       </div>
-    </center>
+    
     
   </body>

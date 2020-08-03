@@ -11,7 +11,7 @@
     
   <!--Navvar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
-        <a class="navbar-brand"  href="/TrabInteg"><img src="https://static-s.aa-cdn.net/img/gp/20600011146013/Ht1Wa_JFJI9zJtrQTmB9pe3sPFnKJz8tHKF_GXSo4KBoTsHrD_eKDwqlkvaQqSS85mw=s300?v=1" width="70" height="65"> Trabajo Integral GLF</a>
+        <a class="navbar-brand"  href="/TrabInteg"><img src="https://static-s.aa-cdn.net/img/gp/20600011146013/Ht1Wa_JFJI9zJtrQTmB9pe3sPFnKJz8tHKF_GXSo4KBoTsHrD_eKDwqlkvaQqSS85mw=s300?v=1" width="70" alt="Logo utem" height="65"> Trabajo Integral GLF</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -32,7 +32,7 @@
 
       <div class="card card-body contenedor pl-2 ancho-ct2">
           <h1 class="display-5 text-center">Agregar Local</h1>
-            <form action="/TrabInteg/templates/procesar.php" method="POST" enctype="multipart/form-data" >
+            <form action="procesar.php" method="POST" enctype="multipart/form-data" >
               <div class="form-group has-feedback">
                 <label for="archivo" role="button">Adjuntar archivo con Coordenadas GPS de los Centros y Puntos de venta:</label>
                 <input id="archivo" type="file" name="archivo" class="form-control" onchange="return validarExt()"/>

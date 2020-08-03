@@ -11,7 +11,7 @@
     
   <!--Navvar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
-        <a class="navbar-brand"  href="/TrabInteg"><img src="https://static-s.aa-cdn.net/img/gp/20600011146013/Ht1Wa_JFJI9zJtrQTmB9pe3sPFnKJz8tHKF_GXSo4KBoTsHrD_eKDwqlkvaQqSS85mw=s300?v=1" width="70" height="65"> Trabajo Integral GLF</a>
+        <a class="navbar-brand"  href="/TrabInteg"><img src="https://static-s.aa-cdn.net/img/gp/20600011146013/Ht1Wa_JFJI9zJtrQTmB9pe3sPFnKJz8tHKF_GXSo4KBoTsHrD_eKDwqlkvaQqSS85mw=s300?v=1" alt="logo utem" width="70" height="65"> Trabajo Integral GLF</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -39,8 +39,8 @@
           TipoLocal VARCHAR(1), 
           NumeroIdentificador INT NULL,   
           Coordenadas VARCHAR(1000),
-          X VARCHAR(100),
-          Y VARCHAR(100),
+          X INT,
+          Y INT,
           PRIMARY KEY (NumeroIdentificador)
         
         )";

@@ -27,7 +27,7 @@
     
   <!--Navvar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
-        <a class="navbar-brand"  href="/TrabInteg"><img src="https://static-s.aa-cdn.net/img/gp/20600011146013/Ht1Wa_JFJI9zJtrQTmB9pe3sPFnKJz8tHKF_GXSo4KBoTsHrD_eKDwqlkvaQqSS85mw=s300?v=1" width="70" height="65"> Trabajo Integral GLF</a>
+        <a class="navbar-brand"  href="/TrabInteg"><img src="https://static-s.aa-cdn.net/img/gp/20600011146013/Ht1Wa_JFJI9zJtrQTmB9pe3sPFnKJz8tHKF_GXSo4KBoTsHrD_eKDwqlkvaQqSS85mw=s300?v=1" width="70" height="65" alt="logo"> Trabajo Integral GLF</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -78,11 +78,12 @@
                   
               <div class="col-md-9 mt-4">
               <table class="table table-striped table-bordered bg-white table-sm">
+                <caption>Tabla rutas</caption>
                   <thead>
                     <tr>
-                        <td>Camion</td>
-                        <td>Punto de Venta</td>
-                        <td>Cantidad de producto</td>
+                        <th id="camion">Camion</th>
+                        <th id="punto">Punto de Venta</th>
+                        <th id="cantidad">Cantidad de producto</th>
                     </tr>
                   </thead>
                     <?php
@@ -97,9 +98,9 @@
                       ?>
                   <tbody>
                     <tr>
-                      <td><center><?php echo $centro?></center></td>
-                      <td><center><?php echo $mostrar['NumeroIdentificador']?></center></td>
-                      <td><center><?php echo $mostrar['Cant_prod']?></center></td>
+                      <td><?php echo $centro?></td>
+                      <td><?php echo $mostrar['NumeroIdentificador']?></td>
+                      <td><?php echo $mostrar['Cant_prod']?></td>
                     </tr>
                   </tbody>
                   <?php
@@ -108,7 +109,7 @@
                   if($cant_prod<1000){
                   ?>
                   <div class="form-group pt-3">
-                    <button type="submit" name="boton" class="btn btn-secondary btn-block centrar-btn" ><img width="30" height="30" src="https://cdn.discordapp.com/attachments/704799632492069024/738630514487066684/61436c0c8a8f5f4e2433a3f6dbbaa3af.png">Añadir Punto de venta. </button>
+                    <button type="submit" name="boton" class="btn btn-secondary btn-block centrar-btn" ><img width="30" height="30" src="https://cdn.discordapp.com/attachments/704799632492069024/738630514487066684/61436c0c8a8f5f4e2433a3f6dbbaa3af.png" alt="Punto">Añadir Punto de venta. </button>
                   </div>
                   <?php
                   }
@@ -124,6 +125,7 @@
                   <?php
                 
                     if($cant_prod<=1000){
+
                       ?>
 
 
