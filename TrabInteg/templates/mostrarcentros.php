@@ -21,7 +21,7 @@
               <a class="nav-link blanco" href="/TrabInteg">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link blanco" href="/TrabInteg/templates/agregarlocal.php">Agregar un local</a>
+              <a class="nav-link blanco" href="/TrabInteg/templates/agregarlocal.php">Comenzar</a>
             </li>
             <li class="nav-item">
               <a class="nav-link blanco" href="/TrabInteg/templates/about.php">Sobre nosotros</a>
@@ -32,6 +32,7 @@
 
       <h2 class="text-center display-4 pt-5">Datos Ingresados en la Base de Datos</h2>
       <div class="col-md-6 contenedor pl-2 mt-0">
+
         <table class="table table-striped table-bordered bg-white table-sm"> <caption> </caption>
             <thead>
                 <tr>
@@ -39,16 +40,17 @@
                     <th id="Identificador" class="text-center">NumeroIdentificador</th>
                     <th id="Camiones" class="text-center">Camiones</th>
                 </tr>
-
+              </thead>
                 <?php
-                $conexion = mysqli_connect('localhost', 'root', '','trabajointegralglf');
+
+                include "conexion.php";
                 $sql ="SELECT * from datoslocales where TipoLocal='C'";
                 $result=mysqli_query($conexion,$sql);
                 while($mostrar=mysqli_fetch_array($result))
                 {
                   $num='NumeroIdentificador';  
                 ?>
-                    </thead>
+                    
                     <tbody>
                     
                     <tr>
@@ -72,36 +74,48 @@
                 ?>
 
                   <br><br>
-                  
+                          
+            </tbody>
+        </table>
+    
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+          <table class="table table-striped table-bordered bg-white table-sm"> <caption> </caption>
+            <thead>
+
                   <tr>
-                    <td class="text-center">Puntos de venta.</td>
-                    <td class="text-center">NumeroIdentificador</td>
-                    
+                    <th id="puntos">Puntos de venta.</th>
+                    <th id="identificador">NumeroIdentificador</th>
+
                    </tr>
                   <?php
                     $sql2 ="SELECT * from datoslocales where TipoLocal='P'";
                     $result=mysqli_query($conexion,$sql2);
                     while($mostrar2=mysqli_fetch_array($result)){
                       $num_camion=1;
-                
+
                     ?>
                     </thead>
                     <tbody>
                     <tr>
                         <td><?php echo $mostrar2['TipoLocal']?></td>
-                        <td><?php echo $mostrar2[$num]?></td>
-                        
-              
+                        <td><?php echo $mostrar2['NumeroIdentificador']?></td>
+
+
                     </tr>
                     <?php
                     }
 
                   ?>
-                  
-                  
-            </tbody>
-        </table>
-    
-    </div>
 
+
+            </tbody>
+          </table>
+        </div>
+        <div class="col-4"></div>
+      </div>
+    </div>
 </body>

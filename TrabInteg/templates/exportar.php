@@ -21,7 +21,7 @@
               <a class="nav-link blanco" href="/TrabInteg">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link blanco" href="/TrabInteg/templates/agregarlocal.php">Agregar un local</a>
+              <a class="nav-link blanco" href="/TrabInteg/templates/agregarlocal.php">Comenzar</a>
             </li>
             <li class="nav-item">
               <a class="nav-link blanco" href="/TrabInteg/templates/about.php">Sobre nosotros</a>
@@ -32,7 +32,7 @@
       <div class="card card-body contenedor pl-2 ancho-ct">
        <?php
 
-        $conexion = mysqli_connect('localhost', 'root', '','trabajointegralglf');
+        include "conexion.php";
   
         $sql9 = "CREATE TABLE datoslocales(
         
@@ -50,8 +50,7 @@
         }
         else{
 
-          if($conexion->error=="Table 'datoslocales' already exists")
-          {}
+          echo "La tabla ha sido creada, anteriormente  <br>";
         }
         $nombrearchivo=$_POST['nombrearchivo'];
 
@@ -64,9 +63,8 @@
       
         if($conexion->query($sql)===true ){
           echo "Datos exportados correctamente.<br>";
-        }else{
-          echo "Error en la exportación: ".$conexion->error."<br>";
         }
+        
       
         $sql2="UPDATE datoslocales
                 SET 

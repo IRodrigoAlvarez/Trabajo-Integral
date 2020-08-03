@@ -21,7 +21,7 @@
               <a class="nav-link blanco" href="/TrabInteg">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link blanco" href="/TrabInteg/templates/agregarlocal.php">Agregar un local</a>
+              <a class="nav-link blanco" href="/TrabInteg/templates/agregarlocal.php">Comenzar</a>
             </li>
             <li class="nav-item">
               <a class="nav-link blanco" href="/TrabInteg/templates/about.php">Sobre nosotros</a>
@@ -31,7 +31,7 @@
       </nav>
 
       <div class="card card-body contenedor pl-2 ancho-ct2">
-          <h1 class="display-5 text-center">Agregar Local</h1>
+          <h1 class="display-5 text-center">Añadir Coordenadas</h1>
             <form action="procesar.php" method="POST" enctype="multipart/form-data" >
               <div class="form-group has-feedback">
                 <label for="archivo" role="button">Adjuntar archivo con Coordenadas GPS de los Centros y Puntos de venta:</label>

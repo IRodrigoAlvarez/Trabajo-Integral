@@ -20,7 +20,7 @@
               <a class="nav-link blanco" href="/TrabInteg">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link blanco" href="/TrabInteg/templates/agregarlocal.php">Agregar un local</a>
+              <a class="nav-link blanco" href="/TrabInteg/templates/agregarlocal.php">Comenzar</a>
             </li>
             <li class="nav-item">
               <a class="nav-link blanco" href="/TrabInteg/templates/about.php">Sobre nosotros</a>

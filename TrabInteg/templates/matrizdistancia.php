@@ -20,7 +20,7 @@
               <a class="nav-link blanco" href="/TrabInteg">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link blanco" href="/TrabInteg/templates/agregarlocal.php">Agregar un local</a>
+              <a class="nav-link blanco" href="/TrabInteg/templates/agregarlocal.php">Comenzar</a>
             </li>
             <li class="nav-item">
               <a class="nav-link blanco" href="/TrabInteg/templates/about.php">Sobre nosotros</a>
@@ -30,7 +30,11 @@
       </nav>
      <div class="card card-body contenedor" style='width:500px; height:500px'>
         <?php
-          $conexion = mysqli_connect('localhost', 'root', '','trabajointegralglf');
+
+
+          include "conexion.php";
+
+
           $C=$_POST['centro_dib'];
           $matriz=array();
           $puntosventas= array();
@@ -148,9 +152,9 @@
                 $finaly = $fy;
                 $cuadradox = pow($finalx - $iniciox,2);
                 $cuadradoy = pow($finaly - $inicioy,2);
-                $distancia = number_format(sqrt($cuadradox+$cuadradoy), 5, '.', ''); // numero con 'x' decimales
+               // $distancia = number_format(sqrt($cuadradox+$cuadradoy), 5, '.', ''); // numero con 'x' decimales
                 
-                return $distancia;
+                return number_format(sqrt($cuadradox+$cuadradoy), 5, '.', '');
             }
 
             
@@ -208,7 +212,7 @@
                   $i=$iaux;
               }
               array_unshift($i,$i[count($i)-1]);
-              return $algo=array($i,$k);
+              return array($i,$k);
             }
 
             function compruebas($matriz,$i){
@@ -275,7 +279,12 @@
         
           </tbody>
         </table>
+
+
+
+        <form action="mostrarcentros.php">
+          <input type="submit" value="Crear otra ruta.">
+        </form>
       </div>
-    
     
   </body>

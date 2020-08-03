@@ -1,6 +1,7 @@
 <?php
 
-  $conexion = mysqli_connect('localhost', 'root', '','trabajointegralglf'); 
+  include "conexion.php";
+
   $centro=$_POST['centro_dib'];
 
   $sql1="CREATE TABLE PuntosVentas$centro(
@@ -8,6 +9,7 @@
       Cant_prod INT,   
       Coordenadas INT,
       PRIMARY KEY(NumeroIdentificador)
+      
         )";
 
   $conexion->query($sql1);
@@ -37,7 +39,7 @@
               <a class="nav-link blanco" href="/TrabInteg">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link blanco" href="/TrabInteg/templates/agregarlocal.php">Agregar un local</a>
+              <a class="nav-link blanco" href="/TrabInteg/templates/agregarlocal.php">Comenzar</a>
             </li>
             <li class="nav-item">
               <a class="nav-link blanco" href="/TrabInteg/templates/about.php">Sobre nosotros</a>
@@ -62,7 +64,7 @@
         <form action="hoja.php" method="POST" autocomplete="off">
 
               <input type="hidden" name="centro_dib" value="<?php echo $centro?>">
-              <input type="option" name="pto_venta" placeholder="Indicar Punto de venta" list="NumeroIdentificador" class="form-control">            
+              <input type="option" name="pto_venta" placeholder="Indicar Punto de venta" list="NumeroIdentificador" class="form-control" required="" min="1">            
               <datalist id="NumeroIdentificador" name="Destino">
               <option value=" ">Seleccione:</option>
                   <?php   
@@ -74,11 +76,11 @@
                   ?>
                 </datalist>
                 <label for="cant_prod" >Cantidad de producto: </label>
-                    <input type="number" size="40" min="1" max="1000" name="cant_prod" >
+                    <input type="number" size="40" min="1" max="1000" name="cant_prod" required="" min="1" >
                   
               <div class="col-md-9 mt-4">
               <table class="table table-striped table-bordered bg-white table-sm">
-                <caption>Tabla rutas</caption>
+                <caption> </caption>
                   <thead>
                     <tr>
                         <th id="camion">Camion</th>
@@ -91,8 +93,10 @@
                   $sql3 ="SELECT * from PuntosVentas$centro";
                   $result=mysqli_query($conexion,$sql3);
                   $cant_prod=0;
+                  $contador=0;
                   while($mostrar=mysqli_fetch_array($result))
                   {
+                      $contador++;
                       $cant_prod = $cant_prod + $mostrar['Cant_prod'];
                       
                       ?>
@@ -119,15 +123,19 @@
               </form>
               
             </div>
-              
-      </div>
+      
+            
 
-                  <?php
-                
+
+            <?php
+                      
+
+
+            
                     if($cant_prod<=1000){
+                      if($contador>=2){
 
                       ?>
-
 
                         <form action="matrizdistancia.php" method="POST">
                         <input type="hidden" name="cant_prod" value="<?php echo $cant_prod?>">
@@ -137,6 +145,7 @@
                          
 
                       <?php
+                      }
                     }
                     else{
 
@@ -157,6 +166,9 @@
                   }
                 
                 ?>
+      </div>
+
+                  
 
 </html>
 
