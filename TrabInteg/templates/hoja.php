@@ -66,13 +66,12 @@
 
               }
 
-              if(isset($_POST['boton2'])){
-
-                if($_POST['cant_producto']>1000){
-                  $_SESSION[$mataaux]=$_SESSION['arreglo'];
-                }
-
+              if(isset($_POST['boton2']) && $_POST['cant_producto']>1000)
+              {
+                $_SESSION[$mataaux]=$_SESSION['arreglo'];
               }
+
+              
 
               
           

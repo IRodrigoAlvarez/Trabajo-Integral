@@ -51,14 +51,17 @@
                 $sql2 ="SELECT * from datoslocales where TipoLocal='P'";
                 $result=mysqli_query($conexion,$sql2);
 
+                $num='NumeroIdentificador';
+                $arre='arreglo';
 
                 if($_SESSION['cant_pv']==0)
                 {
-                  while($mostrar2=mysqli_fetch_array($result)){
-                    array_push($_SESSION['arreglo'],$mostrar2['NumeroIdentificador']);
+                  while($mostrar2=mysqli_fetch_array($result))
+                  {
+                    array_push($_SESSION[$arre],$mostrar2[$num]);
                   }
-                  $_SESSION['mataaux']=$_SESSION['arreglo'];
-                  $_SESSION['cant_pv']=count($_SESSION['arreglo']);
+                  $_SESSION['mataaux']=$_SESSION[$arre];
+                  $_SESSION['cant_pv']=count($_SESSION[$arre]);
                 }
 
 
@@ -71,7 +74,7 @@
                 $result=mysqli_query($conexion,$sql);
                 while($mostrar=mysqli_fetch_array($result))
                 {
-                  $num='NumeroIdentificador';  
+                    
                 ?>
                     
                     <tbody>
@@ -86,20 +89,22 @@
                         
                         <?php
                           
-                          echo "<input type='hidden' name='cant_pv' value='".count($_SESSION['arreglo'])."'>";
+                          echo "<input type='hidden' name='cant_pv' value='".count($_SESSION[$arre])."'>";
 
 
-                          for($a=0;$a<count($_SESSION['arreglo']);$a++)
+                          for($a=0;$a<count($_SESSION[$arre]);$a++)
                           {
-                            if(isset($_SESSION['arreglo'][$a]))
-                              echo "<input type='hidden' name='pto_venta".$a."' value='".$_SESSION['arreglo'][$a]."'>";
+                            if(isset($_SESSION[$arre][$a]))
+                            {
+                              echo "<input type='hidden' name='pto_venta".$a."' value='".$_SESSION[$arre][$a]."'>";
+                            }
                           }
 
 
 
                         ?>
                         <input type="hidden" name="centro_dib" value="<?php echo $mostrar[$num]?>">
-                        <input type="submit" class="btn btn-secondary" value="Crear Ruta" > Para el camion N° <?php echo $mostrar['NumeroIdentificador'] ?>
+                        <input type="submit" class="btn btn-secondary" value="Crear Ruta" > Para el camion N° <?php echo $mostrar[$num] ?>
                         
                         </td>
                         
@@ -142,7 +147,7 @@
                         <td><?php
 
                         
-                        echo $mostrar2['NumeroIdentificador'];
+                        echo $mostrar2[$num];
 
                        
                   
