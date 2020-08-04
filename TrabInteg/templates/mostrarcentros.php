@@ -43,7 +43,30 @@
               </thead>
                 <?php
 
+
+                session_start();
                 include "conexion.php";
+
+              
+                $sql2 ="SELECT * from datoslocales where TipoLocal='P'";
+                $result=mysqli_query($conexion,$sql2);
+
+
+                if($_SESSION['cant_pv']==0)
+                {
+                  while($mostrar2=mysqli_fetch_array($result)){
+                    array_push($_SESSION['arreglo'],$mostrar2['NumeroIdentificador']);
+                  }
+
+                  $_SESSION['cant_pv']=count($_SESSION['arreglo']);
+                }
+
+
+               
+                
+
+
+
                 $sql ="SELECT * from datoslocales where TipoLocal='C'";
                 $result=mysqli_query($conexion,$sql);
                 while($mostrar=mysqli_fetch_array($result))
@@ -60,7 +83,21 @@
                         <td>
 
                         <form action="hoja.php" method="POST">
+                        
+                        <?php
+                          
+                          echo "<input type='hidden' name='cant_pv' value='".count($_SESSION['arreglo'])."'>";
 
+
+                          for($a=0;$a<count($_SESSION['arreglo']);$a++)
+                          {
+                            if(isset($_SESSION['arreglo'][$a]))
+                              echo "<input type='hidden' name='pto_venta".$a."' value='".$_SESSION['arreglo'][$a]."'>";
+                          }
+
+
+
+                        ?>
                         <input type="hidden" name="centro_dib" value="<?php echo $mostrar[$num]?>">
                         <input type="submit" class="btn btn-secondary" value="Crear Ruta" > Para el camion N° <?php echo $mostrar['NumeroIdentificador'] ?>
                         
@@ -102,9 +139,14 @@
                     <tbody>
                     <tr>
                         <td><?php echo $mostrar2['TipoLocal']?></td>
-                        <td><?php echo $mostrar2['NumeroIdentificador']?></td>
+                        <td><?php
 
+                        
+                        echo $mostrar2['NumeroIdentificador'];
 
+                       
+                  
+                        ?></td>
                     </tr>
                     <?php
                     }

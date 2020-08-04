@@ -51,31 +51,49 @@
       <div class="card card-body text-center contenedor ancho-ct2">
 
             <?php
+              session_start();
+              
+            
               if(isset($_POST['boton'])){
-                $num_ident=$_POST['pto_venta'];
+                $num_ident=$_POST['Destino'];
                 $cant_prod=$_POST['cant_prod'];
                 $sen="INSERT INTO PuntosVentas$centro(NumeroIdentificador,Cant_prod) VALUE ('$num_ident','$cant_prod')";
-                $conexion->query($sen);            
+                $conexion->query($sen);
+                
+                $pos=array_search($_POST['Destino'],$_SESSION['arreglo']);
+                unset($_SESSION['arreglo'][$pos]);
+
               }
+
+              
+          
+
             ?>
 
-            <h5>Hoja de rutas del camion N° <?php echo $centro ?></h5>
+            <h4>Hoja de rutas del camion N° <?php echo $centro ?></h4>
 
         <form action="hoja.php" method="POST" autocomplete="off">
 
               <input type="hidden" name="centro_dib" value="<?php echo $centro?>">
-              <input type="option" name="pto_venta" placeholder="Indicar Punto de venta" list="NumeroIdentificador" class="form-control" required="" min="1">            
-              <datalist id="NumeroIdentificador" name="Destino">
-              <option value=" ">Seleccione:</option>
+
+
+              <label>Seleccione punto de venta: </label>
+              <select type="text "id="NumeroIdentificador" name="Destino">
+              
                   <?php   
-                      $sql ="SELECT * from datoslocales where TipoLocal='P'";
-                      $result=mysqli_query($conexion,$sql);
-                      while($mostrar=mysqli_fetch_array($result)){
-                        echo '<option value=" '.$mostrar['NumeroIdentificador'].'"> </option>';
+                    for($a=0;$a<$_SESSION['cant_pv'];$a++){
+
+                      if(isset($_SESSION['arreglo'][$a])){
+
+                      echo '<option value=" '.$_SESSION['arreglo'][$a].'">'.$_SESSION['arreglo'][$a].'</option>';
+                      
                       }
+                    }
                   ?>
-                </datalist>
-                <label for="cant_prod" >Cantidad de producto: </label>
+                </select>
+
+
+                <br><label for="cant_prod" >Cantidad de producto: </label>
                     <input type="number" size="40" min="1" max="1000" name="cant_prod" required="" min="1" >
                   
               <div class="col-md-9 mt-4">
