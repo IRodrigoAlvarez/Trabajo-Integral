@@ -53,15 +53,24 @@
             <?php
               session_start();
               
-            
+              $mataaux='mataaux';
+
               if(isset($_POST['boton'])){
+
                 $num_ident=$_POST['Destino'];
                 $cant_prod=$_POST['cant_prod'];
                 $sen="INSERT INTO PuntosVentas$centro(NumeroIdentificador,Cant_prod) VALUE ('$num_ident','$cant_prod')";
                 $conexion->query($sen);
-                
-                $pos=array_search($_POST['Destino'],$_SESSION['arreglo']);
-                unset($_SESSION['arreglo'][$pos]);
+                $pos=array_search($_POST['Destino'],$_SESSION[$mataaux]);
+                unset($_SESSION[$mataaux][$pos]);
+
+              }
+
+              if(isset($_POST['boton2'])){
+
+                if($_POST['cant_producto']>1000){
+                  $_SESSION[$mataaux]=$_SESSION['arreglo'];
+                }
 
               }
 
@@ -83,9 +92,9 @@
                   <?php   
                     for($a=0;$a<$_SESSION['cant_pv'];$a++){
 
-                      if(isset($_SESSION['arreglo'][$a])){
+                      if(isset($_SESSION[$mataaux][$a])){
 
-                      echo '<option value=" '.$_SESSION['arreglo'][$a].'">'.$_SESSION['arreglo'][$a].'</option>';
+                      echo '<option value=" '.$_SESSION[$mataaux][$a].'">'.$_SESSION[$mataaux][$a].'</option>';
                       
                       }
                     }
@@ -147,18 +156,19 @@
 
             <?php
                       
-
-
-            
                     if($cant_prod<=1000){
                       if($contador>=2){
 
                       ?>
 
                         <form action="matrizdistancia.php" method="POST">
+                          <?php
+                          
+    
+                          ?>
                         <input type="hidden" name="cant_prod" value="<?php echo $cant_prod?>">
                         <input type="hidden" name="centro_dib" value="<?php echo $centro ?>">
-                        <input type="submit" class="btn btn-secondary centrar-btn" value="Generar Ruta más eficiente.">
+                        <input type="submit" class="btn btn-secondary centrar-btn" name="boton3" value="Generar Ruta más eficiente.">
                         </form>
                          
 
@@ -172,15 +182,20 @@
                               alert('Error, los productos distribuidos superan los 1000 unidades, los puntos de venta se eliminarán.')
                               </script>
                               ";
+                        
+                          $_SESSION[$mataaux]=$_SESSION['arreglo'];
+
 
                         $sql4="TRUNCATE TABLE PuntosVentas$centro";
                         $conexion->query($sql4);
 
                         echo '<form action="hoja.php" method="POST">
+                              <input type="hidden" name="cant_producto" value="'.$cant_prod.'">
                               <input type="hidden" name="centro_dib" value="'.$centro.'">
-                              <input type="submit" class="btn btn-secondary" value="Refrescar">
+                              <input type="submit" name="boton2" class="btn btn-secondary" value="Refrescar">
                               </form>';
                       }
+                      
                   }
                 
                 ?>

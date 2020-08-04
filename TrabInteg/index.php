@@ -13,6 +13,7 @@
     session_start();
 
     $_SESSION['arreglo']=array();
+    $_SESSION['mataaux']=array();
     $_SESSION['cant_pv']=0;
     
     
@@ -40,8 +41,12 @@
 
       <div>
         <br><br><br>
-        <h2 class="text-center display-1">Trabajo Integral</h2>
-        <h2 class="text-center display-1">Grafos y Lenguajes Formales</h2>
+        <h1 class="text-center display-1">Trabajo Integral</h1>
+        <h1 class="text-center display-1">Grafos y Lenguajes Formales</h1>
+        <p class="text-center display-4 pt-5">"Generación de Rutas para el transporte de productos" </p>
+      </div>
+      <div class="contenedor ancho-ct">
+        <a class="btn btn-primary centrar-btn" href="/TrabInteg/templates/agregarlocal.php">Comenzar </a>
       </div>
 
     <!--script-->

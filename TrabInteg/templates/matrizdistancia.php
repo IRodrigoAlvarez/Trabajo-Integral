@@ -34,6 +34,13 @@
             <?php
 
               include "conexion.php";
+              session_start();
+
+
+              if(isset($_POST['boton3'])){
+                $_SESSION['arreglo']=$_SESSION['mataaux'];
+              }
+
 
               $C=$_POST['centro_dib'];
               $matriz=array();

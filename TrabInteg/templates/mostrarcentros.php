@@ -57,7 +57,7 @@
                   while($mostrar2=mysqli_fetch_array($result)){
                     array_push($_SESSION['arreglo'],$mostrar2['NumeroIdentificador']);
                   }
-
+                  $_SESSION['mataaux']=$_SESSION['arreglo'];
                   $_SESSION['cant_pv']=count($_SESSION['arreglo']);
                 }
 
